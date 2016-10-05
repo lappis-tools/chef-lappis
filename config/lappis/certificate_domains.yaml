@@ -17,3 +17,7 @@ portal:
 codeschool:
   server_name: codeschool.lappis.rocks
   service_port: 80
+
+devcodeschool:
+  server_name: dev.codeschool.lappis.rocks
+  service_port: 8080

@@ -55,3 +55,10 @@ Host codeschool
   Hostname 10.0.0.137
   User root
 
+Host devcodeschool
+  Hostname 10.0.0.137
+  User root
+
+Host portal
+  Hostname 10.0.0.133
+  User root
