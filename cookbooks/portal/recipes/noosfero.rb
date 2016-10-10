@@ -10,6 +10,7 @@ user 'noosfero'
 
 2.times do
   package 'noosfero' do
+    version '1.5.2'
     options '--force-yes --fix-missing'
     ignore_failure true
   end
