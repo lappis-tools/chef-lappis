@@ -1,6 +1,6 @@
 namespace :package do
 
-  REPREPRO = 'reprepro -b /var/repositories'
+  REPREPRO = 'sudo reprepro -b /var/repositories'
 
   def ssh_cmd(cmd)
     sh 'ssh', '-F', ENV['CHAKE_SSH_CONFIG'], 'repos', cmd
@@ -13,9 +13,9 @@ namespace :package do
   desc 'Upload a package to Debian Repository'
   task :upload, [:package] do |t, args|
     puts 'Starting uploading package...'
-    puts args[:package]
-    scp_cmd('dist/' + args[:package],'/tmp/dist','-r')
-    ssh_cmd(REPREPRO + 'list includedeb jessie /tmp/dist/' + args[:package] )
+    ssh_cmd('rm -rf /tmp/dist')
+    scp_cmd('dist','/tmp/dist','-r')
+    ssh_cmd(REPREPRO + ' includedeb jessie /tmp/dist/' + args[:package] )
   end
 
   desc 'List all packages on Debian Repository'
