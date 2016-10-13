@@ -1,5 +1,9 @@
 package 'nginx'
-templates '/etc/nginx/site-available/default' do
+
+template '/etc/nginx/sites-available/default' do
   mode 644
 end
 
+service 'nginx' do
+  action :restart
+end
