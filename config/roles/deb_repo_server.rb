@@ -5,5 +5,6 @@ run_list *[
   'recipe[basics]',
   'recipe[gpg]',
   'recipe[reprepro]',
+  'recipe[nginx]',
 ]
 
