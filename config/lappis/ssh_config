@@ -55,3 +55,7 @@ Host codeschool
   Hostname 10.0.0.137
   User root
 
+Host repos
+  Hostname 10.0.0.143
+  User lappis
+

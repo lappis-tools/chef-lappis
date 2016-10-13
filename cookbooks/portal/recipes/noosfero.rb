@@ -4,6 +4,7 @@
 #
 
 cookbook_file '/etc/apt/sources.list.d/noosfero.list'
+template '/etc/apt/sources.list.d/lappis.list'
 execute 'apt-get update'
 
 user 'noosfero'
