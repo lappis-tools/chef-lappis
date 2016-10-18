@@ -28,24 +28,32 @@ namespace :package do
 
   desc 'Upload a package to Lappis Debian Repos'
   task :upload, [:package, :release] do |t, args|
+    unless args.package
+      puts 'Specify the full name of the package.'
+      abort
+    end
     puts 'Starting uploading package...'
+    release = args.release || 'jessie'
     ssh_cmd('rm -rf /tmp/dist')
     scp_cmd(PKG_DIR,'/tmp/dist','-r')
-    ssh_cmd("#{REPREPRO} includedeb jessie /tmp/dist/ #{args[:package]}")
+    ssh_cmd("#{REPREPRO} includedeb #{release} /tmp/dist/ #{args.package}")
   end
 
   desc 'List all packages on Lappis Debian Repos'
   task :list, [:release] do |t, args|
     puts 'Listing the packages...'
-    release = args[:release] || 'jessie'
+    release = args.release || 'jessie'
     ssh_cmd("#{REPREPRO} list #{release}")
   end
 
   desc 'Remove given package from the Lappis Debian Repos.'
   task :remove, [:package, :release] do |t, args|
+    unless args.package
+      puts 'Specify the full name of the package.'
+      next
+    end
     puts 'Removing package'
-    release = args[:release] || 'jessie'
-    ssh_cmd("#{REPREPRO} remove #{release} #{args[:package]}")
+    release = args.release || 'jessie'
+    ssh_cmd("#{REPREPRO} remove #{release} #{args.package}")
   end
 end
-
