@@ -9,6 +9,9 @@ execute 'apt-get update'
 
 user 'noosfero'
 
+# This dependency is missing on Noosfero package
+package 'openssl'
+
 2.times do
   package 'noosfero' do
     version '1.5.2'
