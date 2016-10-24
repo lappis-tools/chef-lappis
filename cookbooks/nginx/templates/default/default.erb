@@ -1,0 +1,12 @@
+server {
+
+    root /var/repositories;
+
+    access_log /var/log/nginx/repo.access.log;
+    error_log /var/log/nginx/repo.error.log;
+
+    location  ~ /(db|conf) {
+        deny all;
+        return 404;
+    }
+}

@@ -1,0 +1,11 @@
+Origin: Your project name
+Label: Your project name
+Codename: <%= node['reprepro']['dist_codename'] %>
+Architectures: <%= node['reprepro']['dist_arch'] %>
+Components: <%= node['reprepro']['dist_component'] %>
+Description: <%= node['reprepro']['dist_desc'] %>
+<% if node['reprepro']['dist_signwith'] %>
+  <% node['reprepro']['dist_signwith'].each do |key| %>
+    SignWith: <%= key -%>
+  <% end %>
+<% end %>

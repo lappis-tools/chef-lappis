@@ -4,9 +4,13 @@
 #
 
 cookbook_file '/etc/apt/sources.list.d/noosfero.list'
+template '/etc/apt/sources.list.d/lappis.list' # Source for portal-theme
 execute 'apt-get update'
 
 user 'noosfero'
+
+# This dependency is missing on Noosfero package
+package 'openssl'
 
 2.times do
   package 'noosfero' do
@@ -14,6 +18,10 @@ user 'noosfero'
     options '--force-yes --fix-missing'
     ignore_failure true
   end
+end
+
+package 'portal-unb-theme' do
+  action :upgrade
 end
 
 template '/etc/noosfero/database.yml' do
