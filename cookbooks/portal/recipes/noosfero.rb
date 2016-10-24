@@ -9,18 +9,14 @@ execute 'apt-get update'
 
 user 'noosfero'
 
-# This dependency is missing on Noosfero package
-package 'openssl'
-
-2.times do
-  package 'noosfero' do
-    version '1.5.2'
-    options '--force-yes --fix-missing'
-    ignore_failure true
-  end
+package 'noosfero' do
+  version '1.6.0'
+  options '--force-yes --fix-missing'
+  ignore_failure true
 end
 
 package 'portal-unb-theme' do
+  options '--allow-unauthenticated'
   action :upgrade
 end
 
@@ -31,4 +27,18 @@ end
 
 service 'noosfero' do
   action [:enable, :start]
+end
+
+# Needed Plugins for Portal FGA
+plugins = [
+  'custom_forms',
+  'html5_video',
+  'people_block',
+  'statistics',
+  'video',
+  'work_assignment'
+]
+
+execute 'plugins:enable' do
+  command "/usr/share/noosfero/script/noosfero-plugins enable #{plugins.join(' ')}"
 end

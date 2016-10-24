@@ -1,19 +1,10 @@
 
 namespace :portal do
-
-  def ssh_cmd(cmd)
-    sh 'ssh', '-F', ENV['CHAKE_SSH_CONFIG'], 'portal', cmd
-  end
-
-  def scp_cmd(file, dest, flags='')
-    sh 'scp', flags,'-F', ENV['CHAKE_SSH_CONFIG'], file, "portal:#{dest}"
-  end
-
   desc 'Restore backups to noosfero portal database'
   task :restore do
     puts 'Starting backup...'
-    ssh_cmd('rm -rf /tmp/backups') # TODO: check if are the same backup by size
-    scp_cmd('backups','/tmp/backups','-r')
+    RemoteAccess.ssh_cmd('rm -rf /tmp/backups','portal') # TODO: check if are the same backup by size
+    RemoteAccess.scp_cmd('backups','/tmp/backups', 'portal','-r')
     routine = [
       'sudo systemctl stop noosfero',
       'sudo -u postgres dropdb noosfero 2> /dev/null',
@@ -22,7 +13,7 @@ namespace :portal do
       'sudo systemctl start noosfero'
     ]
     routine.each do |cmd|
-      ssh_cmd(cmd)
+      RemoteAccess.ssh_cmd(cmd,'portal')
     end
   end
 

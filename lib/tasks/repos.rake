@@ -18,14 +18,6 @@ namespace :package do
   REPREPRO = 'sudo reprepro -b /var/repositories'
   PKG_DIR = ENV['PKG_DIR'] || 'dist'
 
-  def ssh_cmd(cmd)
-    sh 'ssh', '-F', ENV['CHAKE_SSH_CONFIG'], 'repos', cmd
-  end
-
-  def scp_cmd(file, dest, flags='')
-    sh 'scp', flags,'-F', ENV['CHAKE_SSH_CONFIG'], file, "repos:#{dest}"
-  end
-
   desc 'Upload a package to Lappis Debian Repos'
   task :upload, [:package, :release] do |t, args|
     unless args.package
@@ -34,16 +26,16 @@ namespace :package do
     end
     puts 'Starting uploading package...'
     release = args.release || 'jessie'
-    ssh_cmd('rm -rf /tmp/dist')
-    scp_cmd(PKG_DIR,'/tmp/dist','-r')
-    ssh_cmd("#{REPREPRO} includedeb #{release} /tmp/dist/#{args.package}")
+    RemoteAccess.ssh_cmd('rm -rf /tmp/dist','repos')
+    RemoteAccess.scp_cmd(PKG_DIR,'/tmp/dist','repos','-r')
+    RemoteAccess.ssh_cmd("#{REPREPRO} includedeb #{release} /tmp/dist/#{args.package}", 'repos')
   end
 
   desc 'List all packages on Lappis Debian Repos'
   task :list, [:release] do |t, args|
     puts 'Listing the packages...'
     release = args.release || 'jessie'
-    ssh_cmd("#{REPREPRO} list #{release}")
+    RemoteAccess.ssh_cmd("#{REPREPRO} list #{release}", 'repos')
   end
 
   desc 'Remove given package from the Lappis Debian Repos.'
@@ -54,6 +46,6 @@ namespace :package do
     end
     puts 'Removing package'
     release = args.release || 'jessie'
-    ssh_cmd("#{REPREPRO} remove #{release} #{args.package}")
+    RemoteAccess.ssh_cmd("#{REPREPRO} remove #{release} #{args.package}",'repos')
   end
 end
