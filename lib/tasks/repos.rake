@@ -36,7 +36,7 @@ namespace :package do
     release = args.release || 'jessie'
     ssh_cmd('rm -rf /tmp/dist')
     scp_cmd(PKG_DIR,'/tmp/dist','-r')
-    ssh_cmd("#{REPREPRO} includedeb #{release} /tmp/dist/ #{args.package}")
+    ssh_cmd("#{REPREPRO} includedeb #{release} /tmp/dist/#{args.package}")
   end
 
   desc 'List all packages on Lappis Debian Repos'
