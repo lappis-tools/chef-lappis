@@ -4,7 +4,9 @@
 #
 
 cookbook_file '/etc/apt/sources.list.d/noosfero.list'
+cookbook_file '/etc/apt/sources.list.d/jessie-backports.list'
 template '/etc/apt/sources.list.d/lappis.list' # Source for portal-theme
+
 execute 'apt-get update'
 
 user 'noosfero'
@@ -25,10 +27,6 @@ template '/etc/noosfero/database.yml' do
   mode '0640'
 end
 
-service 'noosfero' do
-  action [:enable, :start]
-end
-
 # Needed Plugins for Portal FGA
 plugins = [
   'custom_forms',
@@ -39,6 +37,12 @@ plugins = [
   'work_assignment'
 ]
 
+package 'ffmpeg' # Deps for html5_video plugin
+
 execute 'plugins:enable' do
   command "/usr/share/noosfero/script/noosfero-plugins enable #{plugins.join(' ')}"
+end
+
+service 'noosfero' do
+  action [:enable, :start]
 end
