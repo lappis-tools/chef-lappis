@@ -5,6 +5,10 @@ server {
   server_name <%= @server_name %>;
 
   location / {
-    proxy_pass http://<%= @server_ip %>:<%= @service_port %>;
+    proxy_pass http://<%= @server %>;
   }
+}
+
+upstream <%= @server %> {
+    server http://<%= @server_ip %>:<%= @service_port %>;
 }
