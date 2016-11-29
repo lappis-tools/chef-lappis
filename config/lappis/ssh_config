@@ -75,3 +75,6 @@ Host owla
   Hostname 10.0.0.147
   User lappis
 
+Host noosferobeta
+  Hostname 10.0.0.148
+  User lappis
