@@ -11,7 +11,7 @@ boca:
   service_port: 80
 
 portal:
-  server_name: portal.lappis.rocks
+  server_name: fga.unb.br
   service_port: 3000
 
 codeschool:
@@ -19,7 +19,7 @@ codeschool:
   service_port: 80
 
 portalhomologa:
-  server_name: portalhomologa.lappis.rocks
+  server_name: portal.lappis.rocks
   service_port: 3000
 
 sas:
@@ -30,3 +30,6 @@ owla:
   server_name: owla.lappis.rocks
   service_port: 3000
 
+noosferobeta:
+  server_name: betanoosfero.lappis.rocks
+  service_port: 3000
