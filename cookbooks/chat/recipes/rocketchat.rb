@@ -56,12 +56,16 @@ execute "change permission @ /usr/local" do
   command "chown -R root:npm /usr/local && chmod -R 775 /usr/local"
 end
 
+execute "fixing permissions for .npm directory @ rocketchat home" do
+	command "chown -R #{rocketchat_user}:users #{rocketchat_home}/.npm"
+end
+
 execute "install tool to change node version" do
   command "runuser -l rocketchat -c 'npm install -g n'"
 end
 
 execute "change node version to the least" do
-  command "runuser -l rocketchat -c 'n 0.10.40'"
+  command "runuser -l rocketchat -c 'n 4.5'"
 end
 
 # Configure host alias for mongo
@@ -109,7 +113,7 @@ execute "remove old Rocket.Chat dir" do
 end
 
 execute "fix npm missing package" do
-  command "npm install fibers@1.0.5 -g"
+  command "npm install fibers@1.0.15 -g"
 end
 
 execute "rename Rocket.Chat directory" do
@@ -126,6 +130,10 @@ end
 execute "copy fiber binary" do
   command "cp -ar /usr/local/lib/node_modules/fibers/ #{rocketchat_home}/Rocket.Chat/programs/server/node_modules/"
   user rocketchat_user
+end
+
+execute "fixing permissions for .npm directory @ rocketchat home" do
+	command "chown -R #{rocketchat_user}:users #{rocketchat_home}/.npm"
 end
 
 execute "install Rocket.Chat" do
