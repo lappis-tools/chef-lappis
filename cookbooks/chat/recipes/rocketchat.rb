@@ -160,8 +160,9 @@ cookbook_file '/lib/systemd/system/rocketchat.service' do
   mode '0644'
 end
 
-service 'rocketchat' do
-  action [:restart]
+execute 'restart rocketchat' do
+  user 'root'
+	command "systemctl restart rocketchat"
 end
 
 ruby_block "reset home" do
