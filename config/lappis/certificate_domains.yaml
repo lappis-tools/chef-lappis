@@ -21,15 +21,3 @@ codeschool:
 portalhomologa:
   server_name: portal.lappis.rocks
   service_port: 3000
-
-sas:
-  server_name: sas.lappis.rocks
-  service_port: 8001
-
-owla:
-  server_name: owla.lappis.rocks
-  service_port: 3000
-
-noosferobeta:
-  server_name: betanoosfero.lappis.rocks
-  service_port: 3000
