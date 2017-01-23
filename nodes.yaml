@@ -15,26 +15,6 @@ squid:
   run_list:
     - role[squid_server]
 
-redmine:
-  run_list:
-    - role[redmine_server]
-
-polaris:
-  run_list:
-    - role[opennebula-frontend]
-    - role[opennebula-node]
-    - role[polaris] 
-
-solarian:
-  run_list:
-    - role[opennebula-node]
-    - role[solarian]
-
-imperius:
-  run_list:
-    - role[opennebula-node]
-    - role[imperius]
-
 firewall:
   run_list:
     - role[firewall]	
@@ -43,19 +23,7 @@ backup-lappis:
   run_list:
     - role[backup-lappis]
 
-dotproject:
-  run_list:
-    - role[dotproject_server]
-
-mysql:
-  run_list:
-    - role[mysql]
-
 portal:
-  run_list:
-    - role[portal_server]
-
-portal.homologa:
   run_list:
     - role[portal_server]
 
@@ -66,3 +34,7 @@ repos:
 portalhomologa:
   run_list:
     - role[portal_server]
+
+codeschool:
+  run_list:
+    - role[codeschool_server]

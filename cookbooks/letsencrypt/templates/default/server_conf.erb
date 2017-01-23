@@ -4,11 +4,15 @@ server {
 
   server_name <%= @server_name %>;
 
+  <% if @server_name == 'fga.unb.br' %>
+  client_max_body_size 20m;
+  <% end %>
+
   location / {
     proxy_pass http://<%= @server %>;
   }
 }
 
 upstream <%= @server %> {
-    server http://<%= @server_ip %>:<%= @service_port %>;
+    server <%= @server_ip %>:<%= @service_port %>;
 }
