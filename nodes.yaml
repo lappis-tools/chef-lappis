@@ -34,3 +34,7 @@ repos:
 portalhomologa:
   run_list:
     - role[portal_server]
+
+codeschool:
+  run_list:
+    - role[codeschool_server]

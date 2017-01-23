@@ -21,3 +21,7 @@ codeschool:
 portalhomologa:
   server_name: portal.lappis.rocks
   service_port: 3000
+
+moodle:
+  server_name: moodle.lappis.rocks
+  service_port: 80
