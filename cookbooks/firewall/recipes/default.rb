@@ -13,7 +13,8 @@ end
 template iptables_dir do
   source "iptables.up.rules.erb"
   variables({
-    ips: node['peers']
+    ips: node['peers'],
+    external_conf: node['external_ips']
   })
 end
 

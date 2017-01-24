@@ -1,0 +1,45 @@
+164.41.86.12:
+  80:
+    hostname: apache
+    port: 80
+
+  443:
+    hostname: apache
+    port: 443
+
+  21:
+    hostname: services
+    port: 22
+
+
+164.41.86.14:
+  25:
+    hostname: email
+    port: 25
+
+164.41.86.15:
+  80:
+    hostname: letsencrypt
+    port: 80
+
+  443:
+    hostname: letsencrypt
+    port: 443
+
+  21:
+    hostname: letsencrypt
+    port: 22
+
+164.41.86.16:
+  80:
+    hostname: hadouken
+    port: 80
+
+  21:
+    hostname: hadouken
+    port: 22
+
+164.41.86.17:
+  21:
+    hostname: backup-lappis
+    port: 22
