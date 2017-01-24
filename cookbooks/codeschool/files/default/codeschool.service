@@ -1,0 +1,13 @@
+[Unit]
+Description=Codeschool
+
+[Service]
+Type=simple
+ExecStart=/etc/init.d/codeschool start
+ExecStop=/etc/init.d/codeschool stop
+User=root
+Group=root
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

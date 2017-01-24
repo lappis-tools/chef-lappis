@@ -38,3 +38,7 @@ portalhomologa:
 codeschool:
   run_list:
     - role[codeschool_server]
+
+moodle:
+  run_list:
+    - recipe[basic]
