@@ -41,5 +41,5 @@
 
 164.41.86.17:
   21:
-    hostname: backup-lappis
+    hostname: portal
     port: 22

@@ -25,5 +25,5 @@ end
 
 #Execute script
 execute "run scripts" do
-  command "./etc/iptables.up.rules"
+  command "/etc/iptables.up.rules"
 end
