@@ -42,3 +42,7 @@ codeschool:
 moodle:
   run_list:
     - recipe[basic]
+
+backup-lappis-cpd:
+  run_list:
+    - role[backup_server]
