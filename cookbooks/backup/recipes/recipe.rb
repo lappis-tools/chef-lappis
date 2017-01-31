@@ -28,4 +28,3 @@ end
 
 file '/var/log/portal_backup.log'
 cookbook_file '/etc/cron.d/portal_backup_routine'
-
