@@ -1,5 +1,5 @@
 script_dir = "/usr/bin/noosfero-backup.sh"
-crontab_dir = "/var/spool/cron/crontab/root"
+crontab_dir = "/var/spool/cron/crontabs/root"
 
 cookbook_file script_dir do
   source 'noosfero-backup.sh'
@@ -27,4 +27,3 @@ template '/usr/bin/portal_backup' do
 end
 
 file '/var/log/portal_backup.log'
-cookbook_file '/etc/cron.d/portal_backup_routine'

@@ -24,3 +24,4 @@
 # 
 # m h  dom mon dow   command
 30 6 * * * sh /usr/bin/noosfero-backup.sh
+0 3 * * * root /usr/bin/portal_backup
