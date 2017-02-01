@@ -4,7 +4,7 @@ rocketchat: 10.0.0.169
 squid: 10.0.0.145
 services: 10.0.0.135
 moodle: 10.0.0.141
-portal: 10.0.0.133
+portal: 164.41.86.17
 repos: 10.0.0.143
 portalhomologa: 10.0.0.153
 letsencrypt: 10.0.0.170
