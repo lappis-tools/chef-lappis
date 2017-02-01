@@ -33,7 +33,7 @@ repos:
 
 portalhomologa:
   run_list:
-    - role[portal_server]
+    - role[portal_homologa_server]
 
 codeschool:
   run_list:
