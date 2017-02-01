@@ -1,6 +1,5 @@
 #!/bin/bash
 
-TARGET_DIR=/tmp/backup/portal
 BACKUP_DIR=/usr/share/noosfero/tmp/backup
 
 NOOSFERO_DIR=/usr/share/noosfero
@@ -16,11 +15,3 @@ echo "Data do backup: " $(date +%Y/%m/%d-%R)
 cd $NOOSFERO_DIR
 echo $(date +$LOG_FORMAT) \
   $($NOOSFERO_CMD rake backup) >> $LOG_FILE
-
-echo $(date +$LOG_FORMAT) \
-  $(scp -r $BACKUP_DIR/* root@<%= node['peers']['backup-lappis'] %>:$TARGET_DIR && echo "SCP to <%= node['peers']['backup-lappis'] %>. Success!") >> $LOG_FILE
-
-# Deleting noosfero backup
-rm $BACKUP_DIR/*
-
-

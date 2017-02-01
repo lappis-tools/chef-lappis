@@ -41,8 +41,8 @@ moodle:
 
 backup-lappis:
   run_list:
-    - role[backup_server]
+    - role[backup_client]
 
 backup-lappis-cpd:
   run_list:
-    - role[backup_server]
+    - role[backup_client]
