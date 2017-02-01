@@ -9,8 +9,5 @@ LOG_FORMAT=[%b_%a_%Y-%m-%d-%R][portal-backup]
 echo "Data do backup: " $(date +%Y/%m/%d-%R)
 
 echo $(date +$LOG_FORMAT) \
-  $(scp -r root@<%= node['peers']['portal'] %>:$BACKUP_DIR/* $TARGET_DIR  && echo "SCP to <%= node['peers']['portal'] %>. Success!") >> $LOG_FILE
-
-# Deleting noosfero backup
-$(ssh root@<%= node['peers']['portal'] %> 'rm -rf $BACKUP_DIR')
+  $(scp -P 21 -r root@<%= node['peers']['portal'] %>:$BACKUP_DIR/* $TARGET_DIR && echo "SCP to <%= node['peers']['portal'] %>. Success!") >> $LOG_FILE
 
