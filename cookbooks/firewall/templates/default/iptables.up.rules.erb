@@ -6,7 +6,7 @@ iptables -t nat -F
 <% @external_conf.each do |external_ip, ports|  %>
   <% ports.each do |port, service_info| %>
      
-    iptables -t nat -A PREROUTING -p tcp -d <%= external_ip %> --dport <%= port %> -j DNAT --to-destination @ips[ service_info['hostname'] ] %>:<%= service_info['port'] %>
+    iptables -t nat -A PREROUTING -p tcp -d <%= external_ip %> --dport <%= port %> -j DNAT --to-destination <%= @ips[ service_info['hostname'] ] %>:<%= service_info['port'] %>
     iptables -t nat -A POSTROUTING -p tcp -d <%= @ips[ service_info['hostname'] ] %> --dport <%= service_info['port'] %> -j SNAT --to-source <%= external_ip %>
 
   <% end %>

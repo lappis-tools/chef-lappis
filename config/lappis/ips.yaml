@@ -8,7 +8,8 @@ moodle: 10.0.0.141
 portal: 10.0.0.133
 repos: 10.0.0.143
 portalhomologa: 10.0.0.153
-letsecrypt: 10.0.0.170
+letsencrypt: 10.0.0.170
 apache: 10.0.0.134
 email: 10.0.0.158
 hadouken: 10.0.0.132
+firewall: 10.0.0.131
