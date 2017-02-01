@@ -15,12 +15,18 @@ Host backup-lappis
   Hostname 10.0.0.15
   User root
 
+Host backup-lappis-cpd
+  Hostname 164.41.86.14
+  Port 21
+  User root
+
 Host rocketchat
   Hostname 10.0.0.169
   User lappis
 
 Host portal
-  Hostname 10.0.0.133
+  Hostname 164.41.86.17
+  Port 21
   User lappis
 
 Host codeschool

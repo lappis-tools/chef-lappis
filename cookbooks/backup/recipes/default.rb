@@ -1,5 +1,5 @@
 script_dir = "/usr/bin/noosfero-backup.sh"
-crontab_dir = "/var/spool/cron/crontab/root"
+crontab_dir = "/var/spool/cron/crontabs/root"
 
 cookbook_file script_dir do
   source 'noosfero-backup.sh'
@@ -17,7 +17,13 @@ cookbook_file crontab_dir do
   action :create
 end
 
+#Check permission before execute this step - TODO
 execute 'grants_permission_noosfero' do
   command 'chmod +x /usr/bin/noosfero-backup.sh'
 end
 
+template '/usr/bin/portal_backup' do
+  mode '755'
+end
+
+file '/var/log/portal_backup.log'

@@ -19,10 +19,6 @@ firewall:
   run_list:
     - role[firewall]	
 
-backup-lappis:
-  run_list:
-    - role[backup-lappis]
-
 portal:
   run_list:
     - role[portal_server]
@@ -42,3 +38,11 @@ codeschool:
 moodle:
   run_list:
     - recipe[basic]
+
+backup-lappis:
+  run_list:
+    - role[backup_client]
+
+backup-lappis-cpd:
+  run_list:
+    - role[backup_client]
