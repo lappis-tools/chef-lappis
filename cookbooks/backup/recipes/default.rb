@@ -19,11 +19,30 @@ end
 
 #Check permission before execute this step - TODO
 execute 'grants_permission_noosfero' do
-  command 'chmod +x /usr/bin/noosfero-backup.sh'
+  command 'chmod 755 /usr/bin/noosfero-backup.sh'
 end
 
 template '/usr/bin/portal_backup' do
   mode '755'
 end
 
+template '/usr/bin/portal_fs_backup' do
+  mode '755'
+end
+
 file '/var/log/portal_backup.log'
+file '/var/log/portal_fs_backup.log'
+
+directory '/var/backups/portal' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
+directory '/var/backups/portal_fs' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end

@@ -13,9 +13,10 @@ letsencrypt: 10.0.0.170
 apache: 10.0.0.134
 email: 10.0.0.158
 firewall: 10.0.0.131
-backup-lappis-cpd: 164.41.86.14
+backup-lappis-cpd: 164.41.86.100
 backup-lappis: 10.0.0.15
-hue: 10.0.0.31
+hue: 10.0.0.34
 hadouken: 10.0.0.132
 portalhomologafs: 10.0.0.157
 lappis-page: 10.0.0.152
+unigames: 10.0.0.156

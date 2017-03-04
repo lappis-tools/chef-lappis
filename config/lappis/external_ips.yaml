@@ -55,3 +55,7 @@
   21:
     hostname: portal
     port: 22
+
+  443:
+    hostname: unigames
+    port: 22
