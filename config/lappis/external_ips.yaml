@@ -36,8 +36,8 @@
 
 164.41.86.16:
   80:
-    hostname: hadouken
-    port: 80
+    hostname: hue
+    port: 8888
 
   21:
     hostname: hadouken
@@ -45,5 +45,5 @@
 
 164.41.86.17:
   21:
-    hostname: portal
+    hostname: portal-internal
     port: 22
