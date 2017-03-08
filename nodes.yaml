@@ -46,3 +46,7 @@ backup-lappis:
 backup-lappis-cpd:
   run_list:
     - role[backup_client]
+
+nagios:
+  run_list:
+    - role[nagios_server]

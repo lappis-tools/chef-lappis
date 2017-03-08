@@ -14,3 +14,4 @@ hadouken: 10.0.0.132
 firewall: 10.0.0.131
 backup-lappis-cpd: 164.41.86.14
 backup-lappis: 10.0.0.15
+nagios: 10.0.0.145
