@@ -5,12 +5,14 @@ squid: 10.0.0.145
 services: 10.0.0.135
 moodle: 10.0.0.141
 portal: 164.41.86.17
+portal-internal: 10.0.0.133
 repos: 10.0.0.143
 portalhomologa: 10.0.0.153
 letsencrypt: 10.0.0.170
 apache: 10.0.0.134
 email: 10.0.0.158
 hadouken: 10.0.0.132
+hue: 10.0.0.31
 firewall: 10.0.0.131
 backup-lappis-cpd: 164.41.86.14
 backup-lappis: 10.0.0.15
