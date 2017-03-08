@@ -50,3 +50,7 @@ backup-lappis-cpd:
 lappis-page:
   run_list:
     - role[lappis_page_server]
+
+nagios:
+  run_list:
+    - role[nagios_server]
