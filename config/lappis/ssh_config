@@ -48,3 +48,8 @@ Host moodle
 Host firewall
   Hostname 10.0.0.131
   User root
+
+Host nagios
+  Hostname 10.0.0.145
+  User root
+
