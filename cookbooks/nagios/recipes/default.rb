@@ -15,8 +15,8 @@ end
 #TODO - Verify it's correct or not
 #TODO - It demands a password. If i am logged in as root, it would be necessary?
 #TODO - Should i use execute or script command?
-execute mysql_secure_installation
-  action :run
+execute 'install_mysql' do
+  command 'mysql_secure_installation'
 end
 
 service 'mariadb.service' do
@@ -67,7 +67,7 @@ end
 
 remote_file 'var/nagios_packages/nagios-plugins-2.1.1.tar.gz' do
   source 'http://nagios-plugins.org/download/nagios-plugins-2.1.1.tar.gz'
-  action :create_if_missing:
+  action :create_if_missing
 end
 
 execute 'extract_nagios_plugin_files' do
@@ -84,3 +84,4 @@ execute 'compile_install_nagios_plugins' do
   command 'make && make install'
   cwd '/var/nagios_packages/nagios-4.1.1'
 end
+

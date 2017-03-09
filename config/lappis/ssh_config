@@ -55,3 +55,8 @@ Host portalhomologafs
 Host lappis-page
   Hostname 10.0.0.152
   User root
+
+Host nagios
+  Hostname 10.0.0.145
+  User root
+
