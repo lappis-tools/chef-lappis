@@ -12,12 +12,46 @@ service 'mariadb' do
   action :start
 end
 
+#Install pip expect to use on mysql configuration
+
+yum_package 'python-pip'
+
+execute 'pip install pexpect' do
+  command 'pip install pexpect'
+end
+
+python 'run mysql_secure_installation' do
+  code <<-EOH
+import pexpect
+import sys
+from time import sleep
+
+child = pexpect.spawn('/bin/bash', ['-c', 'mysql_secure_installation'])
+child.logfile = sys.stdout
+
+child.expect('.*Enter current password for root [(]enter for none[)]:.*')
+child.sendline('')
+
+child.expect('.*Set root password?.*')
+child.sendline('n')
+
+child.expect('.*Remove anonymous users?.*')
+child.sendline('n')
+
+child.expect('.*Disallow root login remotely?.*')
+child.sendline('n')
+
+child.expect('.*Remove test database and access to it?.*')
+child.sendline('n')
+
+child.expect('.*Reload privilege tables now?.*')
+child.sendline('Y')
+  EOH
+end
+
 #TODO - Verify it's correct or not
 #TODO - It demands a password. If i am logged in as root, it would be necessary?
 #TODO - Should i use execute or script command?
-execute 'install_mysql' do
-  command 'mysql_secure_installation'
-end
 
 service 'mariadb.service' do
   action :enable
@@ -41,7 +75,14 @@ group 'nagcmd' do
   append true
 end
 
-remote_file 'var/nagios_packages/nagios-4.1.1.tar.gz' do
+directory '/var/nagios_packages' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
+remote_file '/var/nagios_packages/nagios-4.1.1.tar.gz' do
   source 'https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.1.1.tar.gz'
   action :create_if_missing
 end
@@ -65,7 +106,7 @@ execute 'add_web_server_user' do
   command 'usermod -G nagcmd apache'
 end
 
-remote_file 'var/nagios_packages/nagios-plugins-2.1.1.tar.gz' do
+remote_file '/var/nagios_packages/nagios-plugins-2.1.1.tar.gz' do
   source 'http://nagios-plugins.org/download/nagios-plugins-2.1.1.tar.gz'
   action :create_if_missing
 end
