@@ -1,3 +1,5 @@
+#TODO add password to root at passwd file, this is needed in 'mysql_secure_installation' script execution
+
 ######### INSTALL LAMP
 
 yum_package 'httpd'
@@ -126,3 +128,28 @@ execute 'compile_install_nagios_plugins' do
   cwd '/var/nagios_packages/nagios-4.1.1'
 end
 
+#Install NRPE
+
+remote_file '/var/nagios_packages/nrpe-2.15/nrpe-2.15.tar.gz' do
+  source 'http://downloads.sourceforge.net/project/nagios/nrpe-2.x/nrpe-2.15/nrpe-2.15.tar.gz'
+  action :create_if_missing
+end
+
+execute 'extract_nrpe_files' do
+  command 'tar xvf nrpe-2.15.tar.gz'
+  cwd '/var/nagios_packages/'
+end
+
+execute 'configure_nrpe' do
+  command './configure --enable-command-args --with-nagios-user=nagios --with-nagios-group=nagios --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib/x86_64-linux-gnu'
+  cwd '/var/nagios_package/nrpe-2.15'
+end
+
+execute 'build_and_install_nrpe' do
+  command 'make all && make install && make install-xinetd && make install-daemon-config'
+  cwd '/var/nagios_package/nrpe-2.15'
+end
+
+execute 'restart xinetd' do
+  commnad 'service xinetd restart'
+end
