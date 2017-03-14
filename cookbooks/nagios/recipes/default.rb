@@ -130,7 +130,7 @@ end
 
 #Install NRPE
 
-remote_file '/var/nagios_packages/nrpe-2.15/nrpe-2.15.tar.gz' do
+remote_file '/var/nagios_packages/nrpe-2.15.tar.gz' do
   source 'http://downloads.sourceforge.net/project/nagios/nrpe-2.x/nrpe-2.15/nrpe-2.15.tar.gz'
   action :create_if_missing
 end
@@ -142,14 +142,18 @@ end
 
 execute 'configure_nrpe' do
   command './configure --enable-command-args --with-nagios-user=nagios --with-nagios-group=nagios --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib/x86_64-linux-gnu'
-  cwd '/var/nagios_package/nrpe-2.15'
+  cwd '/var/nagios_packages/nrpe-2.15'
 end
 
 execute 'build_and_install_nrpe' do
   command 'make all && make install && make install-xinetd && make install-daemon-config'
-  cwd '/var/nagios_package/nrpe-2.15'
+  cwd '/var/nagios_packages/nrpe-2.15'
+end
+
+execute 'add_nagios_server_ip' do
+  command 'sed -i "s/\(\s\+only_from\s\+= 127.0.0.1\)/\1 10.0.0.145/" /etc/xinetd.d/nrpe'
 end
 
 execute 'restart xinetd' do
-  commnad 'service xinetd restart'
+  command 'service xinetd restart'
 end
