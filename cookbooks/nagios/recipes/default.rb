@@ -1,4 +1,5 @@
 #TODO add password to root at passwd file, this is needed in 'mysql_secure_installation' script execution
+#TODO add password to nagios' admin user at passed file, its needed at line 189 
 #TODO fix email to be replaced, at line 176
 
 ######### INSTALL LAMP
@@ -19,7 +20,7 @@ end
 
 yum_package 'python-pip'
 
-execute 'pip install pexpect' do
+execute 'pip_install_pexpect' do
   command 'pip install pexpect'
 end
 
@@ -181,4 +182,35 @@ cookbook_file '/usr/local/nagios/etc/objects/commands.cfg' do
   owner 'root'
   group 'root'
   mode  '0644'
+end
+
+## Configure Apache
+
+python 'create_nagios_admin_user' do
+  code <<-EOH
+import pexpect
+import sys
+from time import sleep
+
+child = pexpect.spawn('/bin/bash', ['-c', 'htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin'])
+child.logfile = sys.stdout
+
+child.expect('.*New password:.*')
+child.sendline('nagios')
+
+child.expect('.*Re-type new password:.*')
+child.sendLine('nagios')
+  EOH
+end
+
+execute 'start_nagios_service' do
+  systemctl start nagios.service
+end
+
+execute 'restart_apache_service' do
+  systemctl restart httpd.service
+end
+
+execute 'enable_nagios_to_start_on_boot' do
+  command 'chkconfig nagios on'
 end
