@@ -1,4 +1,5 @@
 #TODO add password to root at passwd file, this is needed in 'mysql_secure_installation' script execution
+#TODO fix email to be replaced, at line 176
 
 ######### INSTALL LAMP
 
@@ -151,9 +152,33 @@ execute 'build_and_install_nrpe' do
 end
 
 execute 'add_nagios_server_ip' do
-  command 'sed -i "s/\(\s\+only_from\s\+= 127.0.0.1\)/\1 10.0.0.145/" /etc/xinetd.d/nrpe'
+  command 'sed -i "s/\(\s\+only_from\s\+= 127.0.0.1\)\$/\1 10.0.0.145/" /etc/xinetd.d/nrpe'
 end
 
 execute 'restart xinetd' do
   command 'service xinetd restart'
+end
+
+## Configure Nagios
+
+execute 'uncomment_nagios_config_line' do
+  command 'sed -i "s/#cfg_dir=\/usr\/local\/nagios\/etc\/servers/cfg_dir=\/usr\/local\/nagios\/etc\/servers/" /usr/local/nagios/etc/nagios.cfg'
+end
+
+directory '/usr/local/nagios/etc/servers' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
+execute 'replace_email' do
+  command 'sed -i "s/\(\s\+email\s\+\)nagios@localhost/\1meuemail@teste/" /usr/local/nagios/etc/objects/contacts.cfg'
+end
+
+cookbook_file '/usr/local/nagios/etc/objects/commands.cfg' do
+  source 'commands.cfg'
+  owner 'root'
+  group 'root'
+  mode  '0644'
 end
