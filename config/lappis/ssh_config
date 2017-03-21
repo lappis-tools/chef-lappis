@@ -25,8 +25,7 @@ Host rocketchat
   User lappis
 
 Host portal
-  Hostname 164.41.86.17
-  Port 21
+  Hostname 10.0.0.133
   User lappis
 
 Host codeschool
