@@ -25,3 +25,7 @@ portalhomologa:
 moodle:
   server_name: moodle.lappis.rocks
   service_port: 80
+
+sas:
+  server_name: sas.lappis.rocks
+  service_port: 8080
