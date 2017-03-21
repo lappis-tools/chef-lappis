@@ -10,7 +10,7 @@ boca:
   server_name: boca.lappis.rocks
   service_port: 80
 
-portal:
+portal-internal:
   server_name: fga.unb.br
   service_port: 3000
 
