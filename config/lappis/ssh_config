@@ -58,5 +58,5 @@ Host lappis-page
 
 Host nagios
   Hostname 10.0.0.145
-  User root
+  User lappis
 

@@ -28,13 +28,16 @@ python 'run mysql_secure_installation' do
   code <<-EOH
 import pexpect
 import sys
+import yaml
 from time import sleep
+
+database_root_password = ''
 
 child = pexpect.spawn('/bin/bash', ['-c', 'mysql_secure_installation'])
 child.logfile = sys.stdout
 
 child.expect('.*Enter current password for root [(]enter for none[)]:.*')
-child.sendline('')
+child.sendline(database_root_password)
 
 child.expect('.*Set root password?.*')
 child.sendline('n')
@@ -190,25 +193,47 @@ python 'create_nagios_admin_user' do
   code <<-EOH
 import pexpect
 import sys
+import yaml
 from time import sleep
+
+nagios_admin_password = ''
 
 child = pexpect.spawn('/bin/bash', ['-c', 'htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin'])
 child.logfile = sys.stdout
 
 child.expect('.*New password:.*')
-child.sendline('nagios')
+child.sendline(nagios_admin_password)
 
 child.expect('.*Re-type new password:.*')
-child.sendLine('nagios')
+child.sendline(nagios_admin_password)
   EOH
 end
 
+cookbook_file '/etc/systemd/system/nagios.service' do
+  source 'nagios.service'
+  owner 'root'
+  group 'root'
+  mode  '0644'
+end
+
+execute 'enable_nagios_service' do
+  command 'systemctl enable /etc/systemd/system/nagios.service'
+end
+
+execute 'start_nagios' do
+  command 'systemctl start nagios'
+end
+
+execute 'restart_nagios' do
+  command 'systemctl restart nagios'
+end
+
 execute 'start_nagios_service' do
-  systemctl start nagios.service
+  command 'systemctl start nagios.service'
 end
 
 execute 'restart_apache_service' do
-  systemctl restart httpd.service
+  command 'systemctl restart httpd.service'
 end
 
 execute 'enable_nagios_to_start_on_boot' do
