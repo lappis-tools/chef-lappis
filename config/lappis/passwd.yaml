@@ -1,2 +1,4 @@
 # DO NOT PUSH THIS FILE WITH PASSWORDS
 boca: <password>
+database_root_user: <password>
+nagios_admin_user: <password>
