@@ -33,7 +33,8 @@ file '/etc/lappis.services' do
   action :create_if_missing
 end
 
-crt_domains = "-d #{node['crt_domains']['default']['server_name']}"
+default_domain = node['crt_domains']['default']['server_name']
+crt_domains = "-d #{default_domain}"
 node['crt_domains'].each do |key, value|
   crt_domains += " -d #{value['server_name']}" unless key == 'default'
 end
@@ -42,18 +43,15 @@ ruby_block 'Check current cert domains' do
   block do
     services = YAML.load_file('/etc/lappis.services')
     if node['crt_domains'] != services
-      # Creating backup to the last certificates
-      system('sudo rm -rf /etc/letsencrypt/live/lappis.rocks.bak')
-      system('sudo mv /etc/letsencrypt/live/lappis.rocks /etc/letsencrypt/live/lappis.rocks.bak')
       # Genereting new certificates
       system("/opt/letsencrypt/letsencrypt-auto certonly -a webroot --renew-by-default --email lappis.unb@gmail.com\
              --webroot-path=/var/www/html #{crt_domains} --agree-tos --non-interactive")
       File.open('/etc/lappis.services','w'){ |f| f.write node['crt_domains'].to_hash.to_yaml }
       system("sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048")
 
-      unless File.exists?('/etc/letsencrypt/live/lappis.rocks')
-        system('sudo mv /etc/letsencrypt/live/lappis.rocks.bak /etc/letsencrypt/live/lappis.rocks')
-      end
+      current_crt_dir = Dir.glob('/etc/letsencrypt/live/*').select {|f| File.directory? f}.sort.last
+      system("rm -rf /etc/letsencrypt/live/#{default_domain}")
+      system("mv #{current_crt_dir} /etc/letsencrypt/live/#{default_domain}")
     end
   end
 end
