@@ -45,5 +45,5 @@
 
 164.41.86.17:
   21:
-    hostname: portal-internal
+    hostname: portal
     port: 22
