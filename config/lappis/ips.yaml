@@ -21,3 +21,4 @@ portalhomologafs: 10.0.0.157
 lappis-page: 10.0.0.152
 nagios: 10.0.0.145
 nagios-client: 10.0.0.154
+sas: 10.0.0.151
