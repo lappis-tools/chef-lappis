@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  template: template0
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: lappis
+  password: 123lappis4
+
+development:
+  <<: *default
+  database: lappis_development
+
+test:
+  <<: *default
+  database: lappis_test
+
+production:
+  <<: *default
+  database: lappis_production
