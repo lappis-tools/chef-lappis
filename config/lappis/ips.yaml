@@ -15,3 +15,4 @@ firewall: 10.0.0.131
 backup-lappis-cpd: 164.41.86.14
 backup-lappis: 10.0.0.15
 nagios: 10.0.0.145
+nagios-client: 10.0.0.154
