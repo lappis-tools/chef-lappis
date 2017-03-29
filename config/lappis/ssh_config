@@ -51,3 +51,7 @@ Host firewall
 Host portalhomologafs
   Hostname 10.0.0.157
   User lappis
+  
+Host lappis-page
+  Hostname 10.0.0.152
+  User root
