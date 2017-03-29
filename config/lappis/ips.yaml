@@ -25,3 +25,4 @@ sas: 10.0.0.151
 hue: 10.0.0.31
 hadouken: 10.0.0.132
 nagios: 10.0.0.145
+nagios-client: 10.0.0.154
