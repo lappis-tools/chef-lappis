@@ -54,3 +54,7 @@ lappis-page:
 nagios:
   run_list:
     - role[nagios_server]
+
+nagios-client:
+    run_list:
+      - role[nagios_client]

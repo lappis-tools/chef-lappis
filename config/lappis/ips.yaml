@@ -20,3 +20,4 @@ hadouken: 10.0.0.132
 portalhomologafs: 10.0.0.157
 lappis-page: 10.0.0.152
 nagios: 10.0.0.145
+nagios-client: 10.0.0.154
