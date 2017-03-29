@@ -46,3 +46,7 @@ backup-lappis:
 backup-lappis-cpd:
   run_list:
     - role[backup_client]
+
+lappis-page:
+  run-list:
+    - role[lappis_page_server]
