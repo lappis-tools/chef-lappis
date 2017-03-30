@@ -24,13 +24,37 @@ $nodes.each do |node|
   node.data['external_ips'] = external_ips
 end
 
+require 'optparse'
+
 task :create do
+  # to use this task you need to write the command like the following example
+  # rake create [cookbook_name] -- --ip [virtual_manhine_ip] --name [service_name]
+
   ARGV.each { |a| task a.to_sym do ; end }
   cookbook_name = ARGV[1].to_s.strip
   sh 'mkdir', '-p', "cookbooks/#{cookbook_name}/files/default"
   sh 'mkdir', '-p', "cookbooks/#{cookbook_name}/templates/default"
   sh 'mkdir', '-p', "cookbooks/#{cookbook_name}/recipes"
   sh 'touch', "cookbooks/#{cookbook_name}/recipes/default.rb"
+
+  options = {}
+  opts = OptionParser.new
+  opts.banner = "Usage: rake create [cookbook_name] -- [options]"
+  opts.on("-i IP", "--ip IP") { |ip| options[:ip] = ip }
+  opts.on("-n NAME", "--name NAME") { |name| options[:name] = name }
+  args = opts.order!(ARGV){}
+  opts.parse!(args)
+
+  unless options[:ip].nil?
+    options[:name] ||= cookbook_name
+    unless ips.has_key?(options[:name])
+      open(ips_file, 'a') do |f|
+        f.puts "#{options[:name]}: #{options[:ip]}"
+      end
+    end
+  end
+
+  exit
 end
 
 def ssh_cmd(cmd, host)
