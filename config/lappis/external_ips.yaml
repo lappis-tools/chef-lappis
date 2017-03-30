@@ -21,6 +21,14 @@
     hostname: backup-lappis-cpd
     port: 22
 
+  22:
+    hostname: boca
+    port: 22
+
+  80:
+    hostname: boca
+    port: 80
+
 164.41.86.15:
   80:
     hostname: letsencrypt
