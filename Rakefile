@@ -24,6 +24,15 @@ $nodes.each do |node|
   node.data['external_ips'] = external_ips
 end
 
+task :create do
+  ARGV.each { |a| task a.to_sym do ; end }
+  cookbook_name = ARGV[1].to_s.strip
+  sh 'mkdir', '-p', "cookbooks/#{cookbook_name}/files/default"
+  sh 'mkdir', '-p', "cookbooks/#{cookbook_name}/templates/default"
+  sh 'mkdir', '-p', "cookbooks/#{cookbook_name}/recipes"
+  sh 'touch', "cookbooks/#{cookbook_name}/recipes/default.rb"
+end
+
 def ssh_cmd(cmd, host)
   sh 'ssh', '-F', ENV['CHAKE_SSH_CONFIG'], host, cmd
 end
