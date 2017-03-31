@@ -1,0 +1,13 @@
+[Unit]
+Description=Lappis.Page
+
+[Service]
+Type=simple
+ExecStart=/etc/init.d/lappispage start
+ExecStop=/etc/init.d/lappispage stop
+User=root
+Group=root
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

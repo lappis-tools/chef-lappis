@@ -1,0 +1,38 @@
+#! /bin/sh
+# /etc/init.d/lappispage
+#
+
+### BEGIN INIT INFO
+# Provides:          lappispage
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by daemon.
+### END INIT INFO
+
+# Variables
+export PORT=<%= @port %>
+
+case "$1" in
+  start)
+    echo "Starting lappispage"
+
+    echo "Restarting postgres"
+    service postgres restart
+
+    echo "Starting rails server"
+    rails s -e production
+    ;;
+  stop)
+    echo "Stopping lappispage"
+    pkill -9 rails
+    ;;
+  *)
+    echo "Usage: /etc/init.d/ {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
