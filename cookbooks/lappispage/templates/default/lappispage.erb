@@ -20,7 +20,7 @@ case "$1" in
     echo "Starting lappispage"
 
     echo "Restarting postgres"
-    service postgres restart
+    service postgresql restart
 
     echo "Starting rails server"
     rails s -e production

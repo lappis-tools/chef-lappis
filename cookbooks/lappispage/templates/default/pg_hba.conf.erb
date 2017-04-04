@@ -6,7 +6,7 @@
 #
 # Database administrative login by Unix domain socket
 local   all             postgres                                trust
-local   all             <%= @user %>                            trust
+local   all             <%= @user %>                            md5
 
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 
