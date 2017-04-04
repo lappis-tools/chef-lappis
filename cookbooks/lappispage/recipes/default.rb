@@ -1,4 +1,5 @@
-#TODO Change password
+#TODO Change password at user creation
+
 execute 'update packages' do
   command 'apt-get update'
 end
@@ -42,6 +43,13 @@ execute "creating postgres users for #{user}" do
   ignore_failure true
 end
 
+execute "creating lappis_production database" do
+  psql_command = "\"CREATE DATABASE lappis_production OWNER #{user}\""
+  command "psql -U postgres -c #{psql_command}"
+  user 'postgres'
+  ignore_failure true
+end
+
 execute 'clone repository' do
   command 'git clone http://gitlab.com/pedrodelyra/lappis.git'
   ignore_failure  true
@@ -64,6 +72,10 @@ execute 'migrate database' do
   cwd '/lappis'
 end
 
+template '.bashrc' do
+  source '.bashrc'
+end
+
 ### Create lappis page service file
 
 template 'etc/init.d/lappispage' do
@@ -78,6 +90,10 @@ cookbook_file '/lib/systemd/system/lappispage.service' do
   owner 'root'
   group 'root'
   mode '0644'
+end
+
+execute 'change option to serve static files on production' do
+  command 'sed -i "s/config.serve_static_files = false/config.serve_static_files = true/" /lappis/config/environments/production.rb'
 end
 
 service 'lappispage' do

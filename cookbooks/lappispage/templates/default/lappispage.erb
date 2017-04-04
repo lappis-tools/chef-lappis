@@ -23,11 +23,13 @@ case "$1" in
     service postgresql restart
 
     echo "Starting rails server"
-    rails s -e production
+    cd /lappis
+    rails s -e production -b $(hostname -I) -p 3000
+    cd /
     ;;
   stop)
     echo "Stopping lappispage"
-    pkill -9 rails
+    pkill -f rails
     ;;
   *)
     echo "Usage: /etc/init.d/ {start|stop}"
