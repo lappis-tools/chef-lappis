@@ -4,7 +4,7 @@ default: &default
   template: template0
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: lappis
-  password: 123lappis4
+  password: lappis
 
 development:
   <<: *default

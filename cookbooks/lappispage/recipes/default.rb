@@ -4,7 +4,10 @@ execute 'update packages' do
 end
 
 package 'ruby'
+package 'ruby-dev'
 package 'git'
+package 'build-essential'
+package 'nodejs'
 
 execute 'install bundler' do
   command 'gem install bundler'
@@ -64,7 +67,7 @@ end
 ### Create lappis page service file
 
 template 'etc/init.d/lappispage' do
-  source 'lappispage/lappispage.erb'
+  source 'lappispage.erb'
   mode '0755'
   variables({
     service_port: node.lappispage.initd.port
