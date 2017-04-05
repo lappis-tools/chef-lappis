@@ -12,11 +12,11 @@ end
 
 filesystem = `df -h / | grep '^/dev' | awk ' {print $1} '`
 filesystem = filesystem.gsub(/\//, "\\/")
+filesystem = filesystem.strip
 
-	#command 'sed -i "s/\/dev\/hda1/#{filesystem}/g" /etc/nagios/nrpe.cfg'
 #TODO change /dev/vda ti filesystem variable
 execute 'change the filesystem in command[check_hda1]' do
-	command 'sed -i "s/\/dev\/hda1/\\#\\{filesystem\\}/g" /etc/nagios/nrpe.cfg'
+	command 'sed -i "s/\/dev\/hda1/%{filesystem}/g" /etc/nagios/nrpe.cfg' % {filesystem: filesystem}
 end
 
 service 'nagios-nrpe-server' do
