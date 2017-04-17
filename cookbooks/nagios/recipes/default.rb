@@ -239,3 +239,10 @@ end
 execute 'enable_nagios_to_start_on_boot' do
   command 'chkconfig nagios on'
 end
+
+cookbook_file '/usr/local/nagios/etc/servers/nagios_debian_test.cfg' do
+  source 'nagios_debian_test.cfg'
+  owner 'root'
+  group 'root'
+  mode  '0644'
+end
