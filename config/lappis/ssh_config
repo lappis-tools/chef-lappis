@@ -63,3 +63,8 @@ Host nagios
 Host nagios-client
   Hostname 10.0.0.154
   User root
+
+Host plataforma-de-jogos
+  Hostname 10.0.0.156
+  User root
+

@@ -58,3 +58,7 @@ nagios:
 nagios-client:
     run_list:
       - role[nagios_client]
+
+plataforma-de-jogos:
+    run_list:
+      - role[basics]
