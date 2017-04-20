@@ -59,6 +59,6 @@ nagios-client:
     run_list:
       - role[nagios_client]
 
-plataforma-de-jogos:
+unigames:
     run_list:
-      - role[basics]
+      - role[unigames_server]
