@@ -1,8 +1,8 @@
 package 'postgresql'
 package 'libpq-dev'
 
-vagrant_user = 'vagrant'
 pjunb_user = 'pjunb'
+root_user = 'root'
 
 template '/etc/postgresql/9.4/main/pg_hba.conf' do
   source 'pg_hba.conf.erb'
@@ -10,8 +10,8 @@ template '/etc/postgresql/9.4/main/pg_hba.conf' do
   group 'postgres'
   mode 0644
   variables({
-    user_dev: vagrant_user,
-    user_app: pjunb_user
+    user_app: pjunb_user,
+    user_dev: root_user
   })
 end
 
@@ -26,8 +26,8 @@ execute "creating postgres' users for #{pjunb_user}" do
   ignore_failure true
 end
 
-execute "creating postgres\' users for #{vagrant_user}" do
-  psql_command = "CREATE USER #{vagrant_user} with createdb login password 'vagrant'"
+execute "creating postgres' users for #{root_user}" do
+  psql_command = "CREATE USER #{root_user} with createdb login password 'root'"
   command "psql -U postgres -c #{ '"' + psql_command + '"' }"
   user 'postgres'
   ignore_failure true
@@ -42,11 +42,11 @@ service 'postgresql' do
 end
 
 execute 'create database for pjunb' do
-  command 'psql -U postgres -c "CREATE DATABASE funbox OWNER pjunb"'
+  command 'psql -U postgres -c "CREATE DATABASE unigames OWNER pjunb"'
   user 'postgres'
   ignore_failure true
 end
 
-cookbook_file '/home/vagrant/.profile' do
+cookbook_file '/root/.profile' do
   source 'profile'
 end
