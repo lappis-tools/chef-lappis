@@ -1,6 +1,6 @@
 default:
   server_name: lappis.rocks
-  service_port: 80
+  service_port: 3000
 
 rocketchat:
   server_name: chat.lappis.rocks
@@ -25,7 +25,3 @@ portalhomologa:
 moodle:
   server_name: moodle.lappis.rocks
   service_port: 80
-
-sas:
-  server_name: sas.lappis.rocks
-  service_port: 8080

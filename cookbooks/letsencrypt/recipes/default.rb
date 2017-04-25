@@ -70,6 +70,4 @@ template '/etc/nginx/nginx.conf' do
   mode '0644'
 end
 
-service 'nginx' do
-  action :restart
-end
+include_recipe 'letsencrypt::nginx_default_server'
