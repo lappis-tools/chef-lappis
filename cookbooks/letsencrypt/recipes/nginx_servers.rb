@@ -14,10 +14,6 @@ node['crt_domains'].each do | server, params |
     link "/etc/nginx/sites-enabled/#{server}-server" do
       to "/etc/nginx/sites-available/#{server}-server"
     end
-  else
-    link "/etc/nginx/sites-enabled/default" do
-      to "/etc/nginx/sites-available/#{server}-server"
-    end
 	end
 end
 
