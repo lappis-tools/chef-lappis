@@ -1,20 +1,19 @@
 node['crt_domains'].each do | server, params |
-    template "/etc/nginx/sites-available/#{ server }-server" do
-      source( if server != 'default' then
-          'server_conf.erb'
-        else
-          'default_server_conf.erb'
-        end
-      )
-
-      variables({
-        server:       server,
-        server_ip:    node['peers']["#{server}"] || node['peers']['letsencrypt'],
-        service_port: params['service_port'],
-        server_name:  params['server_name']
-      })
-      mode 0644
+  template "/etc/nginx/sites-available/#{ server }-server" do
+    source_file = "server_conf.erb"
+    if server == 'default'
+      source_file = "default_server_conf.erb"
     end
+
+    source source_file
+    variables({
+      server:       server,
+      server_ip:    node['peers']["#{server}"] || node['peers']['letsencrypt'],
+      service_port: params['service_port'],
+      server_name:  params['server_name']
+    })
+    mode 0644
+  end
 
   if server != 'default'
     link "/etc/nginx/sites-enabled/#{server}-server" do
