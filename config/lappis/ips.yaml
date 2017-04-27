@@ -15,6 +15,6 @@ email: 10.0.0.158
 firewall: 10.0.0.131
 backup-lappis-cpd: 164.41.86.14
 backup-lappis: 10.0.0.15
-sas: 10.0.0.151
 hue: 10.0.0.31
 hadouken: 10.0.0.132
+portalhomologafs: 10.0.0.157

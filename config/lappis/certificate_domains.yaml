@@ -25,3 +25,7 @@ portalhomologa:
 moodle:
   server_name: moodle.lappis.rocks
   service_port: 80
+
+portalhomologafs:
+  server_name: fs.lappis.rocks
+  service_port: 3000
