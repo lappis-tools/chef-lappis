@@ -20,8 +20,12 @@ cookbook_file '/etc/nginx/sites-available/default' do
   mode '0644'
 end
 
+link "/etc/nginx/sites-enabled/default" do
+	to "/etc/nginx/sites-available/default"
+end
+
 execute 'remove server files' do
-  command 'rm *-server'
+  command 'rm -rf *-server'
   cwd '/etc/nginx/sites-enabled/'
 end
 
