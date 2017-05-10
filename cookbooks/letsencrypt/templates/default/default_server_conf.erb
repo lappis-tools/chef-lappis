@@ -10,7 +10,6 @@ server {
 
   location / {
     proxy_pass http://<%= @server_ip %>:<%= @service_port %>;
-    try_files $uri $uri/ =404;
   }
 }
 
