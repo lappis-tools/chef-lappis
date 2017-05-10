@@ -50,7 +50,7 @@ Host firewall
 
 Host nagios
   Hostname 10.0.0.145
-  User lappis
+  User root
 
 Host nagios-client
   Hostname 10.0.0.154

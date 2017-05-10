@@ -220,13 +220,13 @@ execute 'enable_nagios_service' do
   command 'systemctl enable /etc/systemd/system/nagios.service'
 end
 
-execute 'start_nagios' do
-  command 'systemctl start nagios'
-end
+#execute 'start_nagios' do
+#  command 'systemctl start nagios'
+#end
 
-execute 'restart_nagios' do
-  command 'systemctl restart nagios'
-end
+#execute 'restart_nagios' do
+ # command 'systemctl restart nagios'
+#end
 
 execute 'start_nagios_service' do
   command 'systemctl start nagios.service'
@@ -245,4 +245,33 @@ cookbook_file '/usr/local/nagios/etc/servers/nagios_debian_test.cfg' do
   owner 'root'
   group 'root'
   mode  '0644'
+end
+
+execute 'comment Order allow, deny' do
+	command 'sed -i "s/Order allow,deny/#Order allow,deny/g" /etc/httpd/conf.d/nagios.conf'
+end
+
+execute 'comment Allow from all' do
+	command 'sed -i "s/Allow from all/#Allow from all/g" /etc/httpd/conf.d/nagios.conf'
+end
+
+execute 'descomment Order deny,allow' do
+	command 'sed -i "s/#     Order deny,allow/      Order deny,allow/g" /etc/httpd/conf.d/nagios.conf'
+end
+
+execute 'descomment Deny from all' do
+	command 'sed -i "s/#     Deny from all/      Deny from all/g" /etc/httpd/conf.d/nagios.conf'
+end
+
+execute 'descomment Allow from 127.0.0.1' do
+	command 'sed -i "s/#     Allow from 127.0.0.1/      Allow from 127.0.0.1/g" /etc/httpd/conf.d/nagios.conf'
+end
+
+
+execute 'start_nagios_service after config nagios.conf' do
+  command 'systemctl start nagios.service'
+end
+
+execute 'restart_apache_service after config nagios.conf' do
+  command 'systemctl restart httpd.service'
 end
