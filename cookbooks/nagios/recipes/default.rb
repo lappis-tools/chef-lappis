@@ -247,6 +247,41 @@ cookbook_file '/usr/local/nagios/etc/servers/nagios_debian_test.cfg' do
   mode  '0644'
 end
 
+cookbook_file '/usr/local/nagios/etc/servers/boca.cfg' do
+  source 'boca.cfg'
+  owner 'root'
+  group 'root'
+  mode  '0644'
+end
+
+cookbook_file '/usr/local/nagios/etc/servers/codeschool.cfg' do
+  source 'codeschool.cfg'
+  owner 'root'
+  group 'root'
+  mode  '0644'
+end
+
+cookbook_file '/usr/local/nagios/etc/servers/moodle.cfg' do
+  source 'moodle.cfg'
+  owner 'root'
+  group 'root'
+  mode  '0644'
+end
+
+cookbook_file '/usr/local/nagios/etc/servers/portal.cfg' do
+  source 'portal.cfg'
+  owner 'root'
+  group 'root'
+  mode  '0644'
+end
+
+cookbook_file '/usr/local/nagios/etc/servers/rocketchat.cfg' do
+  source 'rocketchat.cfg'
+  owner 'root'
+  group 'root'
+  mode  '0644'
+end
+
 execute 'comment Order allow, deny' do
 	command 'sed -i "s/Order allow,deny/#Order allow,deny/g" /etc/httpd/conf.d/nagios.conf'
 end
