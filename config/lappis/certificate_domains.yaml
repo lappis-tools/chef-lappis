@@ -29,3 +29,7 @@ moodle:
 portalhomologafs:
   server_name: fs.lappis.rocks
   service_port: 3000
+
+unbgames:
+  server_name: unbgames.lappis.rocks
+  service_port: 80
