@@ -54,8 +54,10 @@ ruby_block 'Check current cert domains' do
       system("sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048")
 
       current_crt_dir = Dir.glob('/etc/letsencrypt/live/*').select {|f| File.directory? f}.sort.last
-      system("rm -rf /etc/letsencrypt/live/#{default_domain}")
-      system("mv #{current_crt_dir} /etc/letsencrypt/live/#{default_domain}")
+      unless current_crt_dir == default_domain
+        system("rm -rf /etc/letsencrypt/live/#{default_domain}")
+        system("mv #{current_crt_dir} /etc/letsencrypt/live/#{default_domain}")
+      end
     end
   end
 end
