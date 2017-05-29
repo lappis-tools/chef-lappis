@@ -37,27 +37,70 @@ file '/etc/lappis.services' do
   action :create_if_missing
 end
 
-default_domain = node['crt_domains']['default']['server_name']
-crt_domains = "-d #{default_domain}"
-node['crt_domains'].each do |key, value|
-  crt_domains += " -d #{value['server_name']}" unless key == 'default'
-end
-
 ruby_block 'Check current cert domains' do
   block do
-    services = YAML.load_file('/etc/lappis.services')
-    if node['crt_domains'] != services
-      # Genereting new certificates
-      system("/opt/letsencrypt/letsencrypt-auto certonly -a webroot --renew-by-default --email lappis.unb@gmail.com\
-             --webroot-path=/var/www/html #{crt_domains} --agree-tos --non-interactive")
-      File.open('/etc/lappis.services','w'){ |f| f.write node['crt_domains'].to_hash.to_yaml }
-      system("sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048")
+    def tracked_services_updated? services
+      node['crt_domains'] == services
+    end
 
-      current_crt_dir = Dir.glob('/etc/letsencrypt/live/*').select {|f| File.directory? f}.sort.last
-      unless current_crt_dir == default_domain
-        system("rm -rf /etc/letsencrypt/live/#{default_domain}")
-        system("mv #{current_crt_dir} /etc/letsencrypt/live/#{default_domain}")
+    def generate_crt_domains_arg
+      crt_domains = "-d #{default_domain}"
+      node['crt_domains'].each do |key, value|
+        crt_domains += " -d #{value['server_name']}" unless key == 'default'
       end
+
+      crt_domains
+    end
+
+    def default_domain
+      node['crt_domains']['default']['server_name']
+    end
+
+    def update_current_crt_dir(new_crt_dir, default_domain)
+      unless new_crt_dir == default_domain
+        system("rm -rf /etc/letsencrypt/live/#{default_domain}")
+        system("mv /etc/letsencrypt/live/#{new_crt_dir} /etc/letsencrypt/live/#{default_domain}")
+      end
+    end
+
+    def execute_openssl_dhparam_generator
+      system("sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048")
+    end
+
+    def get_tracked_services
+      YAML.load_file('/etc/lappis.services')
+    end
+
+    def update_crt_domains_tracker
+      File.open('/etc/lappis.services','w') do |f|
+        f.write node['crt_domains'].to_hash.to_yaml
+      end
+    end
+
+    def execute_letsencrypt_crt_generator crt_domains
+      system("/opt/letsencrypt/letsencrypt-auto certonly -a webroot\
+             --renew-by-default --email lappis.unb@gmail.com\
+             --webroot-path=/var/www/html #{crt_domains} --agree-tos\
+             --non-interactive")
+      execute_openssl_dhparam_generator
+    end
+
+    def get_newest_crt_directory
+      absolute_crt_dirs = Dir.glob('/etc/letsencrypt/live/*')
+      relative_crt_dirs = absolute_crt_dirs.map { |f| f.split('/').last }
+      newest_crt_dir = relative_crt_dirs.sort.last
+    end
+    
+		services = get_tracked_services
+    unless tracked_services_updated? services
+      # Genereting new certificates
+      crt_domains_arg = generate_crt_domains_arg
+      #execute_letsencrypt_crt_generator crt_domains_arg
+
+      update_crt_domains_tracker
+
+      newest_crt_dir = get_newest_crt_directory
+      update_current_crt_dir(newest_crt_dir, default_domain)
     end
   end
 end

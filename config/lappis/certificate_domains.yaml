@@ -33,3 +33,7 @@ portalhomologafs:
 unbgames:
   server_name: unbgames.lappis.rocks
   service_port: 80
+
+david-ci:
+  server_name: ci.lappis.rocks
+  service_port: 8080
