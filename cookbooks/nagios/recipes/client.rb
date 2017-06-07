@@ -7,7 +7,7 @@ package 'nagios-nrpe-server'
 
 execute 'adding ip host to allowed_hosts' do
   command "sed -i 's/allowed_hosts=127.0.0.1\$/allowed_hosts=127.0.0.1,"\
-          "#{node['peers']['nagios-client']}/' /etc/nagios/nrpe.cfg"
+          "#{node['peers']['nagios']}/' /etc/nagios/nrpe.cfg"
 end
 
 filesystem = `df -h / | grep '^/dev' | awk ' {print $1} '`
