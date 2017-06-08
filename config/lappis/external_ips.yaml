@@ -44,8 +44,8 @@
 
 164.41.86.16:
   80:
-    hostname: hue
-    port: 8888
+    hostname: repos
+    port: 80
 
   21:
     hostname: hadouken
