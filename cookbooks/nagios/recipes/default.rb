@@ -177,7 +177,7 @@ directory '/usr/local/nagios/etc/servers' do
 end
 
 execute 'replace_email' do
-  command 'sed -i "s/\(\s\+email\s\+\)nagios@localhost/\1meuemail@teste/" /usr/local/nagios/etc/objects/contacts.cfg'
+  command 'sed -i "s/\(\s\+email\s\+\)nagios@localhost/\1luan@live.in/" /usr/local/nagios/etc/objects/contacts.cfg'
 end
 
 cookbook_file '/usr/local/nagios/etc/objects/commands.cfg' do
