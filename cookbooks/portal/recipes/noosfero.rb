@@ -12,7 +12,7 @@ execute 'apt-get update'
 user 'noosfero'
 
 package 'noosfero' do
-  version '1.8.0'
+  version '1.6.0'
   options '--force-yes --fix-missing'
   ignore_failure true
 end
