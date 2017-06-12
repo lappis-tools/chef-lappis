@@ -19,6 +19,13 @@ execute 'change the filesystem in command[check_hda1]' do
 	command 'sed -i "s/\/dev\/hda1/%{filesystem}/g" /etc/nagios/nrpe.cfg' % {filesystem: filesystem}
 end
 
+cookbook_file '/etc/nagios/nrpe.cfg' do
+  source 'nrpe.cfg'
+  owner 'root'
+  group 'root'
+  mode  '0644'
+end
+
 service 'nagios-nrpe-server' do
   action :restart
 end
