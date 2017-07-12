@@ -23,20 +23,20 @@ end
 ## Install Django
 
 execute 'install_Django' do
-  command 'sudo pip3 install Django'
+  command 'pip3 install Django'
 end
 
 ## Install Django Rest
 execute 'install_djangorestframework' do
-  command 'sudo pip3 install djangorestframework'
+  command 'pip3 install djangorestframework'
 end
 
 ## Markdown support for the browsable API
 execute 'install_markdown' do
-  command 'sudo pip3 install markdown'
+  command 'pip3 install markdown'
 end
 
 ## Filtering support
 execute 'install_django-filter' do
-  command 'sudo pip3 install django-filter'
+  command 'pip3 install django-filter'
 end
