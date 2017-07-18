@@ -1,0 +1,10 @@
+[Unit]
+Description=Ourcase gunicorn daemon
+
+[Service]
+Type=simple
+User=root
+ExecStart=/var/local/2017.1-PlataformaJogosUnB/backend/gunicorn_start.sh
+
+[Install]
+WantedBy=multi-user.target

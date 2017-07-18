@@ -23,3 +23,8 @@ end
 cookbook_file '/var/local/2017.1-PlataformaJogosUnB/backend/gunicorn_start.sh' do
   source 'gunicorn_start.sh'
 end
+
+cookbook_file '/etc/systemd/system' do
+  source 'gunicorn.service'
+  mode '755'
+end
