@@ -27,14 +27,14 @@ gunicorn ${DJANGO_WSGI_MODULE}:application \
   --bind=unix:$SOCKFILE \
   --access-logfile /var/log/gunicorn/gunicorn-access.log \
   --error-logfile /var/log/gunicorn/gunicorn-error.log
-root@unigames:/usr/local/games/2017.1-PlataformaJogosUnB/backend# ls 
+root@unbgames:/usr/local/games/2017.1-PlataformaJogosUnB/backend# ls 
 core             game       information  media   pytest.ini        run
 development.sqlite3  gunicorn_start.sh  manage.py    public  requirements.txt  templates
-root@unigames:/usr/local/games/2017.1-PlataformaJogosUnB/backend# cd core/
-root@unigames:/usr/local/games/2017.1-PlataformaJogosUnB/backend/core# ls
+root@unbgames:/usr/local/games/2017.1-PlataformaJogosUnB/backend# cd core/
+root@unbgames:/usr/local/games/2017.1-PlataformaJogosUnB/backend/core# ls
 __init__.py   __pycache__  helper_test.py  public   settings.pyc  tests    validators.py  wsgi.py
 __init__.pyc  factory.py   management      settings.py  templates     urls.py  views.py
-root@unigames:/usr/local/games/2017.1-PlataformaJogosUnB/backend/core# cat settings.py
+root@unbgames:/usr/local/games/2017.1-PlataformaJogosUnB/backend/core# cat settings.py
 import os
 import os.path
 

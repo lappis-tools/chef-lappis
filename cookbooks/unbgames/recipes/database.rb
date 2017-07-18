@@ -42,7 +42,7 @@ service 'postgresql' do
 end
 
 execute 'create database for pjunb' do
-  command 'psql -U postgres -c "CREATE DATABASE unigames OWNER pjunb"'
+  command 'psql -U postgres -c "CREATE DATABASE unbgames OWNER pjunb"'
   user 'postgres'
   ignore_failure true
 end

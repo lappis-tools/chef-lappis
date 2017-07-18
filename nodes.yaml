@@ -17,7 +17,7 @@ squid:
 
 firewall:
   run_list:
-    - role[firewall]	
+    - role[firewall]
 
 portal:
   run_list:
@@ -59,6 +59,6 @@ nagios-client:
     run_list:
       - role[nagios_client]
 
-unigames:
+unbgames:
     run_list:
-      - role[unigames_server]
+      - role[unbgames_server]
