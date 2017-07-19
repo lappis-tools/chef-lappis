@@ -1,0 +1,19 @@
+#!/bin/bash
+
+PORTAL_TARGET_DIR=/var/backups/portal
+PORTAL_BACKUP_DIR=/usr/share/noosfero/tmp/backup
+PORTAL_LOG_FILE=/var/log/portal_backup.log
+PORTAL_LOG_FORMAT=[%b_%a_%Y-%m-%d-%R][portal-backup]
+
+CODESCHOOL_TARGET_DIR=/var/backups/codeschool
+CODESCHOOL_BACKUP_DIR=/app/codeschool/docker/volumes/db
+CODESCHOOL_LOG_FILE=/var/log/codeschool.log
+CODESCHOOL_LOG_FORMAT=[%b_%a_%Y-%m-%d-%R][codeschool-backup]
+
+echo "Data do backup: " $(date +%Y/%m/%d-%R)
+
+echo $(date +$PORTAL_LOG_FORMAT) \
+  $(scp -P 21 -r root@<%= node['peers']['portal-external'] %>:$PORTAL_BACKUP_DIR/* $PORTAL_TARGET_DIR && echo "SCP to <%= node['peers']['portal-external'] %>. Success!") >> $PORTAL_LOG_FILE
+
+echo $(date +$CODESCHOOL_LOG_FORMAT) \
+  $(scp -P 22 -r root@<%= node['peers']['codeschool'] %>:$CODESCHOOL_BACKUP_DIR/* $CODESCHOOL_TARGET_DIR && echo "SCP to <%= node['peers']['codeschool'] %>. Success!") >> $CODESCHOOL_LOG_FILE

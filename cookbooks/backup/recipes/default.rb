@@ -1,8 +1,8 @@
-script_dir = "/usr/bin/services-backup"
+script_dir = "/usr/bin/backup-cleaner.sh"
 crontab_dir = "/etc/cron.d/root"
 
 cookbook_file script_dir do
-  source 'services-backup'
+  source 'backup-cleaner.sh'
   owner 'root'
   group 'root'
   mode '0755'
@@ -19,18 +19,14 @@ end
 
 #Check permission before execute this step - TODO
 execute 'grants_permission_noosfero' do
-  command 'chmod 0777 /usr/bin/services-backup.sh'
+  command 'chmod 0777 /usr/bin/backup-cleaner.sh'
 end
 
-template '/usr/bin/portal_backup' do
+template '/usr/bin/services_backup' do
   mode '755'
 end
 
 template '/usr/bin/portal_fs_backup' do
-  mode '755'
-end
-
-template '/usr/bin/codeschool_backup' do
   mode '755'
 end
 
