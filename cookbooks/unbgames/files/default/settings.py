@@ -183,9 +183,9 @@ USE_TZ = True
 
 STATIC_URL = '/public/assets/'
 STATICFILES_DIRS = (
-    os.path.join('/usr/local/games/2017.1-PlataformaJogosUnB/frontend/public'),
+    os.path.join('/var/local/2017.1-PlataformaJogosUnB/frontend/public'),
 )
-STATIC_ROOT = os.path.join('/usr/local/games/2017.1-PlataformaJogosUnB/backend/public/assets/')
+STATIC_ROOT = os.path.join('/var/local/2017.1-PlataformaJogosUnB/backend/public/assets/')
 #STATIC_ROOT = os.path.join(
 #    os.path.dirname(__file__),
 #    '../public/assets',
@@ -194,7 +194,7 @@ STATIC_ROOT = os.path.join('/usr/local/games/2017.1-PlataformaJogosUnB/backend/p
 # Media Files
 
 MEDIA_URL = '/public/'
-MEDIA_ROOT = os.path.join('/usr/local/games/2017.1-PlataformaJogosUnB/backend/public')
+MEDIA_ROOT = os.path.join('/var/local/2017.1-PlataformaJogosUnB/backend/public')
 #MEDIA_ROOT = os.path.join(
 #    os.path.dirname(__file__),
 #    '../public',

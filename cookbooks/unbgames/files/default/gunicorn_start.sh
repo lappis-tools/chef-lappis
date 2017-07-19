@@ -1,8 +1,8 @@
 #!/bin/bash
 
 NAME="unbgames"                              #Name of the application (*)
-DJANGODIR=/usr/local/games/2017.1-PlataformaJogosUnB/backend            # Django project directory (*)
-SOCKFILE=/usr/local/games/2017.1-PlataformaJogosUnB/backend/run/gunicorn.sock        # we will communicate using this unix socket (*)
+DJANGODIR=/var/local/2017.1-PlataformaJogosUnB/backend            # Django project directory (*)
+SOCKFILE=/var/local/2017.1-PlataformaJogosUnB/backend/run/gunicorn.sock        # we will communicate using this unix socket (*)
 USER=root                                        # the user to run as (*)
 GROUP=root                                     # the group to run as (*)
 NUM_WORKERS=5                                     # how many worker processes should Gunicorn spawn (*)
