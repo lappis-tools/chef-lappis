@@ -27,3 +27,6 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 export pjunbdb="pjunb"
 export pjunbsmtp="funbox@pjunb"
+export sk="<eMW7w?ru<B)[EREGk%\`jQv\'wc}+X{2_,=~2Q=p}u,D1wOK0UX"
+export authfacebookkey="1850394608544081"
+export authfacebooksecret="431158b81ec66c753d529962bfef2a87"

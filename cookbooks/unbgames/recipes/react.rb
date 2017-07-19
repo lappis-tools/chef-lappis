@@ -21,6 +21,7 @@ end
 
 directory '/var/chef' do
   action :delete
+  recursive true
 end
 
 python 'install build-essential' do
@@ -45,4 +46,9 @@ child.expect('.*Do you want to continue?.*')
 child.sendline('Y')
   EOH
   ignore_failure true
+end
+
+execute 'install npm' do
+  command 'npm install'
+  cwd '/var/local/2017.1-PlataformaJogosUnB/frontend'
 end

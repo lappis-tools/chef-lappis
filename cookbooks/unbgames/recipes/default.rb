@@ -11,7 +11,12 @@ package 'curl'
 package 'libjpeg-dev'
 package 'nginx'
 
-execute 'Clone UnBGames repository into /var/local/' do
+directory '/var/local/2017.1-PlataformaJogosUnB' do
+  action :delete
+  recursive true
+end
+
+execute 'Cloning UnBGames repository into /var/local/' do
   command 'git clone https://github.com/fga-gpp-mds/2017.1-PlataformaJogosUnB.git'
   cwd '/var/local/'
 end
@@ -20,7 +25,7 @@ cookbook_file '/var/local/2017.1-PlataformaJogosUnB/backend/gunicorn_start.sh' d
   source 'gunicorn_start.sh'
 end
 
-cookbook_file '/etc/systemd/system' do
+cookbook_file '/etc/systemd/system/gunicorn.service' do
   source 'gunicorn.service'
   mode '755'
 end
@@ -37,6 +42,9 @@ cookbook_file '/home/root/.profile' do
   source 'profile'
 end
 
-execute 'reloading profile file' do
-  command 'source /home/root/profile'
+bash 'reloading profile' do
+  cwd '/home/root/'
+  code <<-EOH
+    source .profile
+  EOH
 end
