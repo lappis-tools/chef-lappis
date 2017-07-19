@@ -1,12 +1,7 @@
-execute 'update_packages' do
-  command 'apt-get update'
-end
-
 package 'python3-pip'
-package 'python-pip'
 
-execute 'pip_install_pexpect' do
-  command 'pip install pexpect'
+execute 'install pexpect' do
+  command 'pip3 install pexpect'
 end
 
 execute 'install Django requirements'
@@ -18,12 +13,24 @@ execute 'install_gunicorn' do
   command 'pip3 install gunicorn'
 end
 
+service 'gunicorn' do
+  action :restart
+end
+
 cookbook_file '/var/local/2017.1-PlataformaJogosUnB/backend/core/settings.py' do
   action :delete
+  not_if "ls /var/local/2017.1-PlataformaJogosUnB/backend/core/settings.py"
+end
+
+cookbook_file '/var/local/2017.1-PlataformaJogosUnB/backend/core/settings.py' do
   source 'settings.py'
 end
 
 cookbook_file '/var/local/2017.1-PlataformaJogosUnB/backend/core/wsgi.py' do
   action :delete
+  not_if "ls /var/local/2017.1-PlataformaJogosUnB/backend/core/wsgi.py"
+end
+
+cookbook_file '/var/local/2017.1-PlataformaJogosUnB/backend/core/wsgi.py' do
   source 'wsgi.py'
 end

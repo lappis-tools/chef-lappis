@@ -46,7 +46,3 @@ execute 'create database for pjunb' do
   user 'postgres'
   ignore_failure true
 end
-
-cookbook_file '/root/.profile' do
-  source 'profile'
-end

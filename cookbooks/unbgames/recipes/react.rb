@@ -19,6 +19,10 @@ execute 'install node from ppa' do
   command 'apt-get install nodejs'
 end
 
+directory '/var/chef' do
+  action :delete
+end
+
 python 'install build-essential' do
   code <<-EOH
 import pexpect
