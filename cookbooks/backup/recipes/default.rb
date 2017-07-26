@@ -33,6 +33,7 @@ end
 file '/var/log/portal_backup.log'
 file '/var/log/portal_fs_backup.log'
 file '/var/log/codeschool.log'
+file '/var/log/unbgames.log'
 
 directory '/var/backups/portal' do
   owner 'root'
@@ -49,6 +50,13 @@ directory '/var/backups/portal_fs' do
 end
 
 directory '/var/backups/codeschool' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
+directory '/var/backups/unbgames' do
   owner 'root'
   group 'root'
   mode '0755'

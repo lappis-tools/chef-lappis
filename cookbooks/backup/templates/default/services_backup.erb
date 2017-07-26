@@ -10,6 +10,11 @@ CODESCHOOL_BACKUP_DIR=/app/codeschool/docker/volumes/db
 CODESCHOOL_LOG_FILE=/var/log/codeschool.log
 CODESCHOOL_LOG_FORMAT=[%b_%a_%Y-%m-%d-%R][codeschool-backup]
 
+UNBGAMES_TARGET_DIR=/var/backups/unbgames
+UNBGAMES_BACKUP_DIR=/var/local/2017.1-PlataformaJogosUnB/backup
+UNBGAMES_LOG_FILE=/var/log/unbgames.log
+UNBGAMES_LOG_FORMAT=[%b_%a_%Y-%m-%d-%R][unbgames-backup]
+
 echo "Data do backup: " $(date +%Y/%m/%d-%R)
 
 echo $(date +$PORTAL_LOG_FORMAT) \
@@ -17,3 +22,6 @@ echo $(date +$PORTAL_LOG_FORMAT) \
 
 echo $(date +$CODESCHOOL_LOG_FORMAT) \
   $(scp -P 22 -r root@<%= node['peers']['codeschool'] %>:$CODESCHOOL_BACKUP_DIR/* $CODESCHOOL_TARGET_DIR && echo "SCP to <%= node['peers']['codeschool'] %>. Success!") >> $CODESCHOOL_LOG_FILE
+
+echo $(date +$UNBGAMES_LOG_FORMAT) \
+  $(scp -P 22 -r root@<%= node['peers']['unbgames'] %>:$UNBGAMES_BACKUP_DIR/unbgames_backup.tar.gz $UNBGAMES_TARGET_DIR && echo "SCP to <%= node['peers']['unbgames'] %>. Success!") >> $UNBGAMES_LOG_FILE
