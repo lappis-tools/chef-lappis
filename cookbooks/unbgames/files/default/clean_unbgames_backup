@@ -1,0 +1,11 @@
+#!/bin/bash
+
+BACKUP_DIR=/var/local/2017.1-PlataformaJogosUnB/backup
+
+LOG_FILE=/var/log/unbgames_backup.log
+LOG_FORMAT=[%b_%a_%Y-%m-%d-%R][unbgames-backup]
+
+# Deleting unbgames backup
+echo $(date +$LOG_FORMAT) \
+    $(rm $BACKUP_DIR/*) >> $LOG_FILE
+
