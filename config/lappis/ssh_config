@@ -37,8 +37,8 @@ Host repos
   User lappis
 
 Host portalhomologa
-  Hostname 10.0.0.153
-  User lappis
+  Hostname 10.0.0.146
+  User root
 
 Host moodle
   Hostname 10.0.0.141

@@ -8,7 +8,7 @@ moodle: 10.0.0.141
 portal-external: 164.41.86.17
 portal: 10.0.0.133
 repos: 10.0.0.143
-portalhomologa: 10.0.0.153
+portalhomologa: 10.0.0.146
 letsencrypt: 10.0.0.170
 apache: 10.0.0.134
 email: 10.0.0.158
