@@ -1,8 +1,8 @@
-script_dir = "/usr/bin/backup-cleaner.sh"
+script_dir = "/usr/bin/backup-cleaner"
 crontab_dir = "/etc/cron.d/root"
 
 cookbook_file script_dir do
-  source 'backup-cleaner.sh'
+  source 'backup-cleaner'
   owner 'root'
   group 'root'
   mode '0755'
@@ -26,22 +26,10 @@ template '/usr/bin/services_backup' do
   mode '755'
 end
 
-template '/usr/bin/portal_fs_backup' do
-  mode '755'
-end
-
 file '/var/log/portal_backup.log'
-file '/var/log/portal_fs_backup.log'
 file '/var/log/codeschool.log'
 
 directory '/var/backups/portal' do
-  owner 'root'
-  group 'root'
-  mode '0755'
-  action :create
-end
-
-directory '/var/backups/portal_fs' do
   owner 'root'
   group 'root'
   mode '0755'
