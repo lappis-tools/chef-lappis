@@ -95,7 +95,7 @@ ruby_block 'Check current cert domains' do
     unless tracked_services_updated? services
       # Genereting new certificates
       crt_domains_arg = generate_crt_domains_arg
-      #execute_letsencrypt_crt_generator crt_domains_arg
+      execute_letsencrypt_crt_generator crt_domains_arg
 
       update_crt_domains_tracker
 
