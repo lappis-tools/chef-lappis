@@ -63,3 +63,7 @@
   443:
     hostname: unbgames
     port: 22
+
+  80:
+    hostname: hue
+    port: 8888

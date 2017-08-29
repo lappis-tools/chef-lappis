@@ -4,8 +4,8 @@ Host letsencrypt
   User lappis
 
 Host boca
-  Hostname 10.0.0.163
-  User lappis
+  Hostname 10.0.0.11
+  User ubuntu
 
 Host squid
   Hostname 10.0.0.145
@@ -37,7 +37,7 @@ Host repos
   User lappis
 
 Host portalhomologa
-  Hostname 10.0.0.146
+  Hostname 10.0.0.144
   User root
 
 Host moodle
