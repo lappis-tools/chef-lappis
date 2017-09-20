@@ -90,17 +90,16 @@ ruby_block 'Check current cert domains' do
       relative_crt_dirs = absolute_crt_dirs.map { |f| f.split('/').last }
       newest_crt_dir = relative_crt_dirs.sort.last
     end
-    
+
 		services = get_tracked_services
     unless tracked_services_updated? services
       # Genereting new certificates
       crt_domains_arg = generate_crt_domains_arg
       execute_letsencrypt_crt_generator crt_domains_arg
-
       update_crt_domains_tracker
 
-      newest_crt_dir = get_newest_crt_directory
-      update_current_crt_dir(newest_crt_dir, default_domain)
+     # newest_crt_dir = get_newest_crt_directory
+     # update_current_crt_dir(newest_crt_dir, default_domain)
     end
   end
 end

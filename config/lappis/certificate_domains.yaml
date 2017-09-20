@@ -34,14 +34,6 @@ unbgames:
   server_name: unbgames.lappis.rocks
   service_port: 80
 
-david-ci:
-  server_name: ci.lappis.rocks
+rancher:
+  server_name: rancher.lappis.rocks
   service_port: 8080
-
-anderson-backend:
-  server_name: backend.lappis.rocks
-  service_port: 8000
-
-anderson-workshop:
-  server_name: workshop.lappis.rocks
-  service_port: 80
