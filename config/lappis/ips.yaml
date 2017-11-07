@@ -8,15 +8,12 @@ moodle: 10.0.0.141
 portal-external: 164.41.86.17
 portal: 10.0.0.133
 repos: 10.0.0.143
-portalhomologa: 10.0.0.144
+portalhomologa: 10.0.0.162
 letsencrypt: 10.0.0.170
 apache: 10.0.0.134
 email: 10.0.0.158
 firewall: 10.0.0.131
-backup-lappis-cpd: 164.41.86.100
 backup-lappis: 10.0.0.142
-hue: 10.0.0.34
-hadouken: 10.0.0.132
 portalhomologafs: 10.0.0.157
 lappis-page: 10.0.0.152
 unbgames: 10.0.0.156

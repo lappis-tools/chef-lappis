@@ -15,11 +15,6 @@ Host backup-lappis
   Hostname 10.0.0.142
   User root
 
-Host backup-lappis-cpd
-  Hostname 164.41.86.14
-  Port 21
-  User root
-
 Host rocketchat
   Hostname 10.0.0.169
   User lappis
@@ -37,7 +32,7 @@ Host repos
   User lappis
 
 Host portalhomologa
-  Hostname 10.0.0.144
+  Hostname 10.0.0.162
   User root
 
 Host moodle
@@ -55,3 +50,7 @@ Host portalhomologafs
 Host lappis-page
   Hostname 10.0.0.152
   User root
+
+Host unbgames
+	Hostname 10.0.0.156
+	User root

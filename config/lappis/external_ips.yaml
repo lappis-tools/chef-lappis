@@ -17,10 +17,6 @@
     hostname: email
     port: 25
 
-  21:
-    hostname: backup-lappis-cpd
-    port: 22
-
   22:
     hostname: boca
     port: 22
@@ -47,23 +43,8 @@
     hostname: repos
     port: 80
 
-  21:
-    hostname: hadouken
-    port: 22
-
 164.41.86.17:
   21:
     hostname: portal
     port: 22
 
-  80:
-    hostname: hue
-    port: 8888
-
-  443:
-    hostname: unbgames
-    port: 22
-
-  80:
-    hostname: hue
-    port: 8888

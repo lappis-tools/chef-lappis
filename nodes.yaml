@@ -43,10 +43,7 @@ backup-lappis:
   run_list:
     - role[backup_client]
 
-backup-lappis-cpd:
-  run_list:
-    - role[backup_client]
-
 lappis-page:
   run_list:
     - role[lappis_page_server]
+
