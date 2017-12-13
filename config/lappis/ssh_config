@@ -23,10 +23,6 @@ Host portal
   Hostname 10.0.0.133
   User lappis
 
-Host codeschool
-  Hostname 10.0.0.137
-  User root
-
 Host repos
   Hostname 10.0.0.143
   User lappis
@@ -42,10 +38,6 @@ Host moodle
 Host firewall
   Hostname 10.0.0.131
   User root
-
-Host portalhomologafs
-  Hostname 10.0.0.157
-  User lappis
   
 Host lappis-page
   Hostname 10.0.0.152

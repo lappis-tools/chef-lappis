@@ -1,6 +1,5 @@
 default: 10.0.0.152
 boca: 10.0.0.11
-codeschool: 10.0.0.137
 rocketchat: 10.0.0.153
 ejrocketchat: 10.0.0.153
 squid: 10.0.0.145
@@ -15,7 +14,6 @@ apache: 10.0.0.134
 email: 10.0.0.158
 firewall: 10.0.0.131
 backup-lappis: 10.0.0.142
-portalhomologafs: 10.0.0.157
 lappis-page: 10.0.0.152
 unbgames: 10.0.0.156
 rancher: 10.0.0.147

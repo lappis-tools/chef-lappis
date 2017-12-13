@@ -2,36 +2,28 @@ default:
   server_name: lappis.rocks
   service_port: 3000
 
+portal:
+  server_name: fga.unb.br
+  service_port: 3000
+
 rocketchat:
   server_name: chat.lappis.rocks
   service_port: 3000
 
 boca:
-  server_name: boca.lappis.rocks
-  service_port: 80
-
-portal:
-  server_name: fga.unb.br
-  service_port: 3000
-
-codeschool:
-  server_name: codeschool.lappis.rocks
+  server_name: boca.fga.lappis.rocks
   service_port: 80
 
 portalhomologa:
-  server_name: portal.lappis.rocks
+  server_name: portal.fga.lappis.rocks
   service_port: 3000
 
 moodle:
-  server_name: moodle.lappis.rocks
+  server_name: moodle.fga.lappis.rocks
   service_port: 80
 
-portalhomologafs:
-  server_name: fs.lappis.rocks
-  service_port: 3000
-
 unbgames:
-  server_name: unbgames.lappis.rocks
+  server_name: unbgames.fga.lappis.rocks
   service_port: 80
 
 rancher:
