@@ -37,3 +37,7 @@ unbgames:
 rancher:
   server_name: rancher.lappis.rocks
   service_port: 8080
+
+ejrocketchat:
+  server_name: chat.empurrandojuntos.org
+  service_port: 3100
