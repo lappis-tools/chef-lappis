@@ -17,16 +17,12 @@
     hostname: email
     port: 25
 
-  22:
-    hostname: boca
-    port: 22
-
   80:
-    hostname: rancher-dev-aerosmith
+    hostname: rancher-dev-ironmaiden
     port: 80
 
   443:
-    hostname: rancher-dev-aerosmith
+    hostname: rancher-dev-ironmaiden
     port: 443
 
 164.41.86.15:
