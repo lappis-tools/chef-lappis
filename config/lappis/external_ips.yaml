@@ -22,8 +22,12 @@
     port: 22
 
   80:
-    hostname: boca
+    hostname: rancher-dev-aerosmith
     port: 80
+
+  443:
+    hostname: rancher-dev-aerosmith
+    port: 443
 
 164.41.86.15:
   80:
