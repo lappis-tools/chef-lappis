@@ -14,22 +14,11 @@ boca:
   server_name: boca.fga.lappis.rocks
   service_port: 80
 
-portalhomologa:
-  server_name: portal.fga.lappis.rocks
-  service_port: 3000
-
 moodle:
   server_name: moodle.fga.lappis.rocks
-  service_port: 80
-
-unbgames:
-  server_name: unbgames.fga.lappis.rocks
   service_port: 80
 
 rancher:
   server_name: rancher.lappis.rocks
   service_port: 8080
 
-ejrocketchat:
-  server_name: chat.empurrandojuntos.org
-  service_port: 3100

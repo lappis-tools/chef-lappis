@@ -12,19 +12,6 @@
     port: 22
 
 
-164.41.86.14:
-  25:
-    hostname: email
-    port: 25
-
-  80:
-    hostname: rancher-dev-ironmaiden
-    port: 80
-
-  443:
-    hostname: rancher-dev-ironmaiden
-    port: 443
-
 164.41.86.15:
   80:
     hostname: letsencrypt
@@ -37,14 +24,3 @@
   21:
     hostname: letsencrypt
     port: 22
-
-164.41.86.16:
-  80:
-    hostname: repos
-    port: 80
-
-164.41.86.17:
-  21:
-    hostname: portal
-    port: 22
-
